@@ -8,11 +8,11 @@ class Conversation extends StatelessWidget {
   const Conversation({
     Key? key,
     required this.user,
-    // required this.messages,
+    required this.messages,
   }) : super(key: key);
 
   final User user;
-  // final List<Message> messages;
+  final List<Message> messages;
 
   @override
   Widget build(BuildContext context) {

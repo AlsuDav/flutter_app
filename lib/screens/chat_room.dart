@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/message.dart';
 import 'package:flutter_app/models/user.dart';
-import 'package:flutter_app/widgets/build_chat_composer.dart';
 import 'package:flutter_app/widgets/conversation.dart';
+import 'package:intl/intl.dart';
 
 import '../app_theme.dart';
 
@@ -15,13 +15,13 @@ class ChatRoom extends StatefulWidget {
 }
 
 class _ChatRoomState extends State<ChatRoom> {
-  List<String> _items = ['message 1', 'message 2'];
+  List<Message> _cur_messages = messages;
 
   TextEditingController _textEditingController = TextEditingController();
 
-  void _addToList(String text) {
+  void _addToList(User user, String avatar, String time, String text ) {
     setState(() {
-      _items.add(text);
+      _cur_messages.insert(0,new Message(sender: user, avatar: avatar, time: time, unreadCount: 0, text: text, isRead: true));
     });
     _textEditingController.clear();
   }
@@ -92,7 +92,7 @@ class _ChatRoomState extends State<ChatRoom> {
                     topRight: Radius.circular(30),
                   ),
                   //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                  child: Conversation(user:widget.user),
+                  child: Conversation(user:widget.user, messages: _cur_messages,),
                 ),
               ),
             ),
@@ -121,6 +121,7 @@ class _ChatRoomState extends State<ChatRoom> {
                           SizedBox(width: 10,),
                           Expanded(
                             child: TextField(
+                              controller: _textEditingController,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: 'Type your message ...',
@@ -134,11 +135,15 @@ class _ChatRoomState extends State<ChatRoom> {
                       ),
                     )),
                     SizedBox(width: 16,),
-                    CircleAvatar(backgroundColor: MyTheme.kAccentColor,
-                    child: Icon(
-                      Icons.mic,
-                      color: Colors.white,
-                    ))
+                    GestureDetector(
+                    // CircleAvatar(backgroundColor: MyTheme.kAccentColor,
+
+
+                          child: Icon(Icons.add),
+                          onTap: () {
+                            _addToList(currentUser,currentUser.avatar,DateFormat('HH:mm a').format(DateTime.now()),_textEditingController.text);
+                          },
+                        )
                   ],
                 )),
           ],
