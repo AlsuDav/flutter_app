@@ -1,6 +1,10 @@
+// @dart=2.9
 import 'package:flutter/material.dart';
+import 'package:flutter_app/app_theme.dart';
 
+import 'chat.dart';
 import 'detail_info.dart';
+import 'screens/home_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -21,7 +25,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+  MyHomePage({Key key, this.title}) : super(key: key);
 
   final String title;
 
@@ -30,7 +34,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<String> _items = ['Widgets', 'Api'];
+  List<String> _items = const ['Widgets', 'Api', 'NiceChat'];
 
   TextEditingController _textEditingController = TextEditingController();
 
@@ -44,8 +48,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // backgroundColor: MyTheme.kPrimaryColor,
         appBar: AppBar(
-          title: Text(widget.title),
+          backgroundColor: MyTheme.kPrimaryColor,
+          title: Text(widget.title,),
         ),
         body: SafeArea(
           child: Center(
@@ -63,30 +69,45 @@ class _MyHomePageState extends State<MyHomePage> {
                               color: Colors.deepPurple, fontSize: 16),
                         ),
                         onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => DetailInfo(title: item)));
+                          // if item == _items[1]:
+                          switch (item) {
+                            case 'Widgets':
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => Chat(title: item)));
+                              break;
+                            case 'Api':
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => DetailInfo(title: 'apiiiitest')));
+                              break;
+                            case 'NiceChat':
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => HomePage()));
+                              break;
+                        }
                         },
                       );
                     }).toList(),
                   ),
                 ),
-                Row(
-                  children: [
-                    Expanded(
-                        child: TextField(
-                      controller: _textEditingController,
-                    )),
-                    GestureDetector(
-                      child: Icon(Icons.add),
-                      onTap: () {
-                        _addToList(_textEditingController.text);
-                      },
-                    )
-                  ],
-                )
+                // Row(
+                //   children: [
+                //     Expanded(
+                //         child: TextField(
+                //       controller: _textEditingController,
+                //     )),
+                //     GestureDetector(
+                //       child: Icon(Icons.add),
+                //       onTap: () {
+                //         _addToList(_textEditingController.text);
+                //       },
+                //     )
+                //   ],
+                // )
               ],
             ),
           )),
-        ));
+        )
+
+    );
   }
 }
