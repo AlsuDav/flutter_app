@@ -19,12 +19,21 @@ class _ChatRoomState extends State<ChatRoom> {
 
   TextEditingController _textEditingController = TextEditingController();
 
-  void _addToList(User user, String avatar, String time, String text ) {
+  void _addToList(User user, String avatar, String time, String text) {
     setState(() {
-      _cur_messages.insert(0,new Message(sender: user, avatar: avatar, time: time, unreadCount: 0, text: text, isRead: true));
+      _cur_messages.insert(
+          0,
+          new Message(
+              sender: user,
+              avatar: avatar,
+              time: time,
+              unreadCount: 0,
+              text: text,
+              isRead: true));
     });
     _textEditingController.clear();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,7 +81,7 @@ class _ChatRoomState extends State<ChatRoom> {
       ),
       backgroundColor: MyTheme.kPrimaryColor,
       body: GestureDetector(
-        onTap: (){
+        onTap: () {
           FocusScope.of(context).unfocus();
         },
         child: Column(
@@ -92,22 +101,24 @@ class _ChatRoomState extends State<ChatRoom> {
                     topRight: Radius.circular(30),
                   ),
                   //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                  child: Conversation(user:widget.user, messages: _cur_messages,),
+                  child: Conversation(
+                    user: widget.user,
+                    messages: _cur_messages,
+                  ),
                 ),
               ),
             ),
             //!!!!!!!!!!!!!!!!!!!!!!1
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.symmetric(horizontal: 20),
                 color: Colors.white,
                 height: 100,
                 child: Row(
                   children: [
                     Expanded(
                         child: Container(
-                          padding: EdgeInsets.symmetric(horizontal: 15),
-                          height: 60,
-
+                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      height: 60,
                       decoration: BoxDecoration(
                         color: Colors.grey[200],
                         borderRadius: BorderRadius.circular(30),
@@ -118,32 +129,38 @@ class _ChatRoomState extends State<ChatRoom> {
                             Icons.emoji_emotions_outlined,
                             color: Colors.grey[500],
                           ),
-                          SizedBox(width: 10,),
+                          SizedBox(
+                            width: 10,
+                          ),
                           Expanded(
                             child: TextField(
                               controller: _textEditingController,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: 'Type your message ...',
-                                hintStyle: TextStyle(color:Colors.grey[500]),
+                                hintStyle: TextStyle(color: Colors.grey[500]),
                               ),
                             ),
                           ),
                           Icon(Icons.attach_file, color: Colors.grey[500])
-
                         ],
                       ),
                     )),
-                    SizedBox(width: 16,),
+                    SizedBox(
+                      width: 16,
+                    ),
                     GestureDetector(
-                    // CircleAvatar(backgroundColor: MyTheme.kAccentColor,
+                      // CircleAvatar(backgroundColor: MyTheme.kAccentColor,
 
-
-                          child: Icon(Icons.add),
-                          onTap: () {
-                            _addToList(currentUser,currentUser.avatar,DateFormat('HH:mm a').format(DateTime.now()),_textEditingController.text);
-                          },
-                        )
+                      child: Icon(Icons.add),
+                      onTap: () {
+                        _addToList(
+                            currentUser,
+                            currentUser.avatar,
+                            DateFormat('HH:mm a').format(DateTime.now()),
+                            _textEditingController.text);
+                      },
+                    )
                   ],
                 )),
           ],
