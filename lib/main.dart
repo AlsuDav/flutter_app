@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/app_theme.dart';
 
+import 'cats_screen.dart';
 import 'chat.dart';
 import 'detail_info.dart';
 import 'screens/home_page.dart';
@@ -34,7 +35,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<String> _items = const ['Widgets', 'Api', 'NiceChat'];
+  List<String> _items = const ['Widgets', 'Api', 'NiceChat', 'Cats'];
 
   TextEditingController _textEditingController = TextEditingController();
 
@@ -82,6 +83,10 @@ class _MyHomePageState extends State<MyHomePage> {
                             case 'NiceChat':
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) => HomePage()));
+                              break;
+                            case 'Cats':
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => Cats(title: item)));
                               break;
                         }
                         },
