@@ -25,10 +25,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: MyTheme.kPrimaryColor,
-        leading: IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.menu),
-        ),
+        // leading: IconButton(
+        //   onPressed: () {},
+        //   icon: Icon(Icons.menu),
+        // ),
         title: Text('Nice Chat', style: MyTheme.kAppTitle),
         actions: [IconButton(onPressed: () {}, icon: Icon(Icons.camera_alt))],
         elevation: 0,
@@ -50,11 +50,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               child: TabBarView(
                 controller: tabController,
                 children: [
-                  Column(
-                    children: [
-                      RecentChats(),
-                    ],
-                  ),
+                  RecentChats(),
                   Center(
                     child: Text('Status'),
                   ),

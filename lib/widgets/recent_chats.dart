@@ -5,11 +5,16 @@ import 'package:flutter_app/screens/chat_room.dart';
 
 import '../app_theme.dart';
 
-class RecentChats extends StatelessWidget {
+class RecentChats extends StatefulWidget {
   const RecentChats({
     Key? key,
   }) : super(key: key);
 
+  @override
+  _RecentChatsState createState() => _RecentChatsState();
+}
+
+class _RecentChatsState extends State<RecentChats> with AutomaticKeepAliveClientMixin{
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -28,57 +33,63 @@ class RecentChats extends StatelessWidget {
             )
           ]),
         ),
-        ListView.builder(
-            shrinkWrap: true,
-            itemCount: recentChats.length,
-            itemBuilder: (context, int index) {
-              final recentChat = recentChats[index];
-              return Container(
-                  margin: const EdgeInsets.only(top: 20),
-                  child: Row(
-                    children: [
-                      CircleAvatar(
-                        radius: 28,
-                        backgroundImage: AssetImage(recentChat.sender.avatar),
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      GestureDetector(
-                        onTap: (){
-                          Navigator.push(context,
-                          CupertinoPageRoute(builder: (context){
-                            return ChatRoom(user: recentChat.sender);
-                          }));
-                        },
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+        Expanded(
+          child: ListView.builder(
+
+              itemCount: recentChats.length,
+              itemBuilder: (context, int index) {
+                final recentChat = recentChats[index];
+                return Container(
+                    margin: const EdgeInsets.only(top: 20),
+                    child: Row(
+                      children: [
+                        CircleAvatar(
+                          radius: 28,
+                          backgroundImage: AssetImage(recentChat.sender.avatar),
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        GestureDetector(
+                          onTap: (){
+                            Navigator.push(context,
+                            CupertinoPageRoute(builder: (context){
+                              return ChatRoom(user: recentChat.sender);
+                            }));
+                          },
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                recentChat.sender.name,
+                                style: MyTheme.heading2.copyWith(fontSize: 16),
+                              ),
+                              Text(
+                                recentChat.text,
+                                style: MyTheme.bodyText1,
+                              ),
+                            ],
+                          ),
+                        ),
+                        Spacer(),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Text(
-                              recentChat.sender.name,
-                              style: MyTheme.heading2.copyWith(fontSize: 16),
-                            ),
-                            Text(
-                              recentChat.text,
-                              style: MyTheme.bodyText1,
+                              recentChat.time,
+                              style: MyTheme.bodyTextTime,
                             ),
                           ],
-                        ),
-                      ),
-                      Spacer(),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            recentChat.time,
-                            style: MyTheme.bodyTextTime,
-                          ),
-                        ],
-                      )
-                    ],
-                  ));
-            })
+                        )
+                      ],
+                    ));
+              }),
+        )
       ],
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }
