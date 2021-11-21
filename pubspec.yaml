@@ -35,6 +35,8 @@ dependencies:
   retrofit: any
   analyzer: any
   json_annotation: any
+  flutter_mobx: ^2.0.2
+  mobx: ^2.0.0
 
 
 dev_dependencies:
@@ -43,6 +45,7 @@ dev_dependencies:
   retrofit_generator: any
   build_runner: any
   json_serializable: any
+  mobx_codegen: ^2.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
