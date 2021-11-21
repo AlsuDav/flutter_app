@@ -11,16 +11,16 @@ class User {
 }
 
 final User currentUser =
-User(id: 0, name: 'You', avatar: 'assets/images/ava_1.jpg');
+User(id: 0, name: 'Boss', avatar: 'assets/images/ava_2.jpg');
 
 final User user1 =
-User(id: 1, name: 'Chimin', avatar: 'assets/images/ava_2.jpg');
+User(id: 1, name: 'Кот', avatar: 'assets/images/ava_1.jpg');
 
 final User user2 =
-User(id: 2, name: 'Chonguk', avatar: 'assets/images/ava_3.jpg');
+User(id: 2, name: 'Good boy', avatar: 'assets/images/ava_3.jpg');
 
 final User user3 =
-User(id: 3, name: 'Techon', avatar: 'assets/images/ava_4.jpg');
+User(id: 3, name: 'burger', avatar: 'assets/images/ava_4.jpg');
 
 // final User jason = User(id: 4, name: 'Json', avatar: 'assets/images/Jason.jpg');
 //

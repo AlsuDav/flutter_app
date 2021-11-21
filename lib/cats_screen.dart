@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/api_client.dart';
 import 'package:http/http.dart' as http;
 
 import 'detail_info.dart';
@@ -24,26 +25,36 @@ class _CatsState extends State<Cats> {
   @override
   void initState() {
     super.initState();
-    _getCatsWithDio();
+    _getCatsWithRetrofit();
   }
 
   Future<void> _getCats() async {
     var response = await http.get(Uri.parse(url));
     setState(() {
-      _cats = catFromJson(response.body);
+      // _cats = catFromJson(response.body);
     });
   }
 
   Future<void> _getCatsWithDio() async {
-    // var response = await http.get(Uri.parse("https://itis-chat-app-ex.herokuapp.com/chat"));
-    Dio dio = Dio();
+     Dio dio = Dio();
 
     dio
         .get(url)
         .then((response) => setState(() {
-              _cats = catFromJson(jsonEncode(response.data));
+              // _cats = catFromJson(jsonEncode(response.data));
             }))
         .catchError((error) {
+      print(error.toString());
+    });
+  }
+
+  Future<void> _getCatsWithRetrofit() async {
+    RestClient restClient = RestClient(Dio());
+    restClient.getCats().then((List<Cat> cats){
+      setState(() {
+        this._cats = cats;
+      });
+    }).catchError((error){
       print(error.toString());
     });
   }

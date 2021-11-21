@@ -4,10 +4,12 @@
 
 import 'dart:convert';
 
-List<Cat> catFromJson(String str) => List<Cat>.from(json.decode(str).map((x) => Cat.fromJson(x)));
-
-String catToJson(List<Cat> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
-
+import 'package:json_annotation/json_annotation.dart';
+part 'cat.g.dart';
+// List<Cat> catFromJson(String str) => List<Cat>.from(json.decode(str).map((x) => Cat.fromJson(x)));
+//
+// String catToJson(List<Cat> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+@JsonSerializable()
 class Cat {
   Cat({
     required this.id,
@@ -21,40 +23,11 @@ class Cat {
   String url;
   int width;
   int height;
+  factory Cat.fromJson(Map<String, dynamic> json) => _$CatFromJson(json);
+  Map<String, dynamic> toJson() => _$CatToJson(this);
 
-  factory Cat.fromJson(Map<String, dynamic> json) => Cat(
-    id: json["id"],
-    url: json["url"],
-    width: json["width"],
-    height: json["height"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "id": id,
-    "url": url,
-    "width": width,
-    "height": height,
-  };
 }
 
 
 
-class Weight {
-  Weight({
-    required this.imperial,
-    required this.metric,
-  });
 
-  String imperial;
-  String metric;
-
-  factory Weight.fromJson(Map<String, dynamic> json) => Weight(
-    imperial: json["imperial"],
-    metric: json["metric"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "imperial": imperial,
-    "metric": metric,
-  };
-}

@@ -32,11 +32,17 @@ dependencies:
   intl: 0.15.7
   http: 0.13.3
   dio: 4.0.0
+  retrofit: any
+  analyzer: any
+  json_annotation: any
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  retrofit_generator: any
+  build_runner: any
+  json_serializable: any
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
