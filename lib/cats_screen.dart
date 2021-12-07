@@ -3,8 +3,10 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/api_client.dart';
+import 'package:flutter_app/theme_store.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 
 import 'cat_store.dart';
 import 'detail_info.dart';
@@ -13,6 +15,19 @@ import 'models/cat.dart';
 class Cats extends StatefulWidget {
   const Cats({Key? key, required this.title}) : super(key: key);
   final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        Provider<ThemeStore>(create: (_) => ThemeStore()),
+      ],
+      child: MaterialApp(
+          title: 'Flutter Demo',
+          theme: context.watch<ThemeStore>().theme,
+          home: const Cats(title: 'Flutter Demo Cats')),
+    );
+  }
 
   @override
   _CatsState createState() => _CatsState();
@@ -67,10 +82,12 @@ class _CatsState extends State<Cats> {
         appBar: AppBar(
           title: Text(widget.title),
         ),
-        floatingActionButton: FloatingActionButton(onPressed: () {
-          _catStore.fetchNewCat();
-        },
-        child: Icon(Icons.plus_one),),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            _catStore.fetchNewCat();
+          },
+          child: Icon(Icons.plus_one),
+        ),
         body: SafeArea(
           child: Center(
               child: Padding(

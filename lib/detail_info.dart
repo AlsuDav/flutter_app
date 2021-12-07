@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/theme_store.dart';
+import 'package:provider/provider.dart';
 
 class DetailInfo extends StatefulWidget {
   const DetailInfo({Key? key, required this.title}) : super(key: key);
@@ -14,6 +16,14 @@ class _DetailInfoState extends State<DetailInfo> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        actions: [
+          GestureDetector(
+            child: Icon(Icons.error),
+            onTap: () {
+              context.read<ThemeStore>().setTheme(ThemeData.dark());
+            },
+          )
+        ],
       ),
       body: Container(),
     );

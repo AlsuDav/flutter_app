@@ -1,6 +1,9 @@
 // @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:flutter_app/app_theme.dart';
+import 'package:flutter_app/theme_store.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:provider/provider.dart';
 
 import 'cats_screen.dart';
 import 'chat.dart';
@@ -8,20 +11,26 @@ import 'detail_info.dart';
 import 'screens/home_page.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MultiProvider(providers: [
+    Provider<ThemeStore>(create: (_) => ThemeStore()),
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key key}) : super(key: key);
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page Yeahhhh'),
-    );
+    return Observer(builder: (context) {
+      return MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: MyHomePage(title: 'Flutter Demo Home Page Yeahhhh'),
+      );
+    });
   }
 }
 
@@ -49,10 +58,21 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: MyTheme.kPrimaryColor,
+        // backgroundColor: MyTheme.kPrimaryColor,
         appBar: AppBar(
           backgroundColor: MyTheme.kPrimaryColor,
-          title: Text(widget.title,),
+          title: Text(
+            widget.title,
+          ),
+          actions: [
+            GestureDetector(
+              child: Icon(Icons.error),
+
+              onTap: () {
+                context.read<ThemeStore>().setTheme(ThemeData.dark());
+              },
+            )
+          ],
         ),
         body: SafeArea(
           child: Center(
@@ -78,7 +98,8 @@ class _MyHomePageState extends State<MyHomePage> {
                               break;
                             case 'Api':
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => DetailInfo(title: 'apiiiitest')));
+                                  builder: (context) =>
+                                      DetailInfo(title: 'apiiiitest')));
                               break;
                             case 'NiceChat':
                               Navigator.of(context).push(MaterialPageRoute(
@@ -88,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) => Cats(title: item)));
                               break;
-                        }
+                          }
                         },
                       );
                     }).toList(),
@@ -111,8 +132,6 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           )),
-        )
-
-    );
+        ));
   }
 }
