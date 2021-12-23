@@ -4,6 +4,7 @@ import 'detail_info.dart';
 
 class Chat extends StatefulWidget {
   const Chat({Key? key, required this.title}) : super(key: key);
+  static String routeName = '/widgets';
   final String title;
   @override
   _ChatState createState() => _ChatState();

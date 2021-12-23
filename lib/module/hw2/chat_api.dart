@@ -2,12 +2,13 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/hw2/chat_store.dart';
-import 'package:flutter_app/hw2/models/message_api.dart';
+import 'package:flutter_app/module/hw2/chat_store.dart';
+import 'package:flutter_app/module/hw2/models/message_api.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-import '../api_client_chat.dart';
-import '../detail_info.dart';
+import 'api_client_chat.dart';
+
+
 
 class ChatApi extends StatefulWidget {
   const ChatApi({Key? key, required this.title}) : super(key: key);

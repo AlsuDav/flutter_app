@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/models/message.dart';
-import 'package:flutter_app/models/user.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_app/module/hw1/models/user.dart';
 
-import '../app_theme.dart';
+import '../../app_theme.dart';
 import 'models/message_api.dart';
 
 class ConversationApi extends StatelessWidget {

@@ -1,7 +1,9 @@
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
 
-import 'hw2/models/message_api.dart';
+import 'models/message_api.dart';
+
+
 
 part 'api_client_chat.g.dart';
 

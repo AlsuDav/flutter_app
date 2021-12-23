@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/widgets/my_tab_bar.dart';
-import 'package:flutter_app/widgets/recent_chats.dart';
+import 'package:flutter_app/module/hw1/widgets/my_tab_bar.dart';
+import 'package:flutter_app/module/hw1/widgets/recent_chats.dart';
 
-import '../app_theme.dart';
+import '../../../app_theme.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

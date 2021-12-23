@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/models/message.dart';
-import 'package:flutter_app/models/user.dart';
-import 'package:flutter_app/widgets/conversation.dart';
+import 'package:flutter_app/module/hw1/models/message.dart';
+import 'package:flutter_app/module/hw1/models/user.dart';
+
+import 'package:flutter_app/module/hw1/widgets/conversation.dart';
 import 'package:intl/intl.dart';
 
-import '../app_theme.dart';
+import '../../../app_theme.dart';
+
 
 class ChatRoom extends StatefulWidget {
   const ChatRoom({Key? key, required this.user}) : super(key: key);

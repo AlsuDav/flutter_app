@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/models/message.dart';
-import 'package:flutter_app/screens/chat_room.dart';
+import 'package:flutter_app/module/hw1/models/message.dart';
+import 'package:flutter_app/module/hw1/screens/chat_room.dart';
 
-import '../app_theme.dart';
+import '../../../app_theme.dart';
+
 
 class RecentChats extends StatefulWidget {
   const RecentChats({

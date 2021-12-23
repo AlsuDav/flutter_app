@@ -1,13 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_app/models/user.dart';
+import 'package:flutter_app/module/hw1/models/user.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:mobx/mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 
-import '../api_client_chat.dart';
-import '../app_theme.dart';
+import 'api_client_chat.dart';
+import '../../app_theme.dart';
 import 'chat_store.dart';
 import 'conversation_api.dart';
 import 'models/message_api.dart';
@@ -17,38 +17,12 @@ class ChatApiRoom extends StatefulWidget {
 
   @override
   _ChatApiRoomState createState() => _ChatApiRoomState();
-  // final User user;
 }
 
 class _ChatApiRoomState extends State<ChatApiRoom> {
-  // List<Message> _cur_messages = messages;
 
   TextEditingController _textEditingController = TextEditingController();
-  ChatStore _chatStore = ChatStore();
-
-  // void _addToList(User user, String avatar, String time, String text) {
-  //   setState(() {
-  //     _cur_messages.insert(
-  //         0,
-  //         new Message(
-  //             sender: user,
-  //             avatar: avatar,
-  //             time: time,
-  //             unreadCount: 0,
-  //             text: text,
-  //             isRead: true));
-  //   });
-  //   _textEditingController.clear();
-  // }
-  void _sendMessage(String text) {
-    RestClient restClient = RestClient(Dio());
-
-    restClient
-        .sendMessage(MessageApi(author: currentUser.name, message: text))
-
-        .then((value) => {_chatStore.fetchNewMessage(MessageApi(author: currentUser.name, message: text))});
-    _textEditingController.clear();
-  }
+  final ChatStore _chatStore = Modular.get<ChatStore>();
 
   @override
   Widget build(BuildContext context) {
@@ -188,4 +162,14 @@ class _ChatApiRoomState extends State<ChatApiRoom> {
       ),
     );
   }
+
+  void _sendMessage(String text) {
+    RestClient restClient = RestClient(Dio());
+    restClient
+        .sendMessage(MessageApi(author: currentUser.name, message: text))
+
+        .then((value) => {_chatStore.fetchNewMessage(MessageApi(author: currentUser.name, message: text))});
+    _textEditingController.clear();
+  }
 }
+
