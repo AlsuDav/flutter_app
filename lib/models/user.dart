@@ -11,7 +11,7 @@ class User {
 }
 
 final User currentUser =
-User(id: 0, name: 'Boss', avatar: 'assets/images/ava_2.jpg');
+User(id: 0, name: 'Alsu', avatar: 'assets/images/ava_2.jpg');
 
 final User user1 =
 User(id: 1, name: 'Кот', avatar: 'assets/images/ava_1.jpg');

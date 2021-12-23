@@ -34,6 +34,9 @@ class MyTheme {
   static final TextStyle bodyTextMessage =
   TextStyle(fontSize: 13, letterSpacing: 1.5, fontWeight: FontWeight.w600);
 
+  static final TextStyle bodyTextAuthor =
+  TextStyle(fontSize: 11, letterSpacing: 1.1, fontWeight: FontWeight.bold, color: Colors.deepPurpleAccent);
+
   static final TextStyle bodyTextTime = TextStyle(
     color: Color(0xffAEABC9),
     fontSize: 11,

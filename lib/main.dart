@@ -1,12 +1,14 @@
 // @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:flutter_app/app_theme.dart';
+import 'package:flutter_app/hw2/chat_api_room.dart';
 import 'package:flutter_app/theme_store.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 
 import 'cats_screen.dart';
 import 'chat.dart';
+import 'hw2/chat_api.dart';
 import 'detail_info.dart';
 import 'screens/home_page.dart';
 
@@ -44,7 +46,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<String> _items = const ['Widgets', 'Api', 'NiceChat', 'Cats'];
+  List<String> _items = const ['Widgets', 'Api', 'NiceChat', 'Cats', 'ChatApi'];
 
   TextEditingController _textEditingController = TextEditingController();
 
@@ -99,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             case 'Api':
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) =>
-                                      DetailInfo(title: 'apiiiitest')));
+                                      ChatApi(title: item)));
                               break;
                             case 'NiceChat':
                               Navigator.of(context).push(MaterialPageRoute(
@@ -108,6 +110,10 @@ class _MyHomePageState extends State<MyHomePage> {
                             case 'Cats':
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) => Cats(title: item)));
+                              break;
+                            case 'ChatApi':
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => ChatApiRoom()));
                               break;
                           }
                         },
