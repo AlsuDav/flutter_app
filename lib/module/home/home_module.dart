@@ -1,9 +1,8 @@
 import 'package:flutter_app/module/cats/cats_screen.dart';
 import 'package:flutter_app/module/cats/chat.dart';
 import 'package:flutter_app/module/hw1/screens/home_page.dart';
-import 'package:flutter_app/module/hw2/chat_api.dart';
 import 'package:flutter_app/module/hw2/chat_api_module.dart';
-import 'package:flutter_app/module/hw2/chat_api_room.dart';
+import 'package:flutter_app/module/hw3/gallery_module.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'home_page.dart';
@@ -27,6 +26,9 @@ class HomeModule extends Module {
             transition: TransitionType.leftToRightWithFade),
         ModuleRoute('/hw2',
             module: ChatApiModule(),
+            transition: TransitionType.leftToRightWithFade),
+        ModuleRoute('/hw3',
+            module: GalleryModule(),
             transition: TransitionType.leftToRightWithFade),
       ];
 }

@@ -20,7 +20,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<String> _items = const ['Widgets', 'NiceChat_hw1', 'Cats', 'ChatApi_hw2'];
+  List<String> _items = const ['Widgets', 'NiceChat_hw1', 'Cats', 'ChatApi_hw2', 'Gallery'];
 
 
 
@@ -82,6 +82,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                   Modular.to.pushNamed('/hw2');
                                   // Navigator.of(context).push(MaterialPageRoute(
                                   //     builder: (context) => ChatApiRoom()));
+                                  break;
+                                case 'Gallery':
+                                  Modular.to.pushNamed('/hw3');
                                   break;
                               }
                             },
